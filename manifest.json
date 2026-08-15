@@ -1,0 +1,25 @@
+{
+  "name": "كلية الحاسبات والمعلومات - جامعة العريش",
+  "short_name": "FCI Arish",
+  "description": "كلية الحاسبات والمعلومات بجامعة العريش",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0B1F3A",
+  "theme_color": "#0B1F3A",
+  "dir": "rtl",
+  "lang": "ar",
+  "icons": [
+    {
+      "src": "assets/logos/Screenshot_20260814_010526_Facebook.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "assets/logos/Screenshot_20260814_010526_Facebook.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

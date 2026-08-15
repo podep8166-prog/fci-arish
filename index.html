@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>كلية الحاسبات والمعلومات | جامعة العريش</title>
+<meta name="description" content="كلية الحاسبات والمعلومات بجامعة العريش — علوم الحاسب، نظم المعلومات، وتكنولوجيا المعلومات. نحو مستقبل رقمي يبدأ من هنا.">
+<meta name="theme-color" content="#0B1F3A">
+<link rel="manifest" href="manifest.json">
+<link rel="icon" href="assets/logos/Screenshot_20260814_010526_Facebook.png">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@500;600;700;800;900&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Manrope:wght@500;600;700&display=swap" rel="stylesheet">
+
+<!-- Icons -->
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js" defer></script>
+
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/departments.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+<!-- ============ PRELOADER (brief intro, target 1–2s) ============ -->
+<div id="preloader" class="preloader" aria-hidden="true">
+  <div class="preloader__mark">
+    <img src="assets/logos/Screenshot_20260814_010526_Facebook.png" alt="" class="preloader__logo">
+  </div>
+</div>
+
+<!-- ============ SKIP LINK (accessibility) ============ -->
+<a href="#main" class="skip-link">تخطَّ إلى المحتوى الرئيسي</a>
+
+<!-- ============ NAVIGATION ============ -->
+<header class="site-nav" id="siteNav">
+  <div class="site-nav__inner container">
+
+    <a href="#hero" class="site-nav__brand" aria-label="الصفحة الرئيسية لكلية الحاسبات والمعلومات">
+      <img src="assets/logos/Screenshot_20260814_010526_Facebook.png" alt="شعار كلية الحاسبات والمعلومات" class="site-nav__logo">
+      <span class="site-nav__brand-text">
+        <strong>كلية الحاسبات والمعلومات</strong>
+        <small>جامعة العريش</small>
+      </span>
+    </a>
+
+    <nav class="site-nav__links" aria-label="التنقل الرئيسي">
+      <a href="#hero" class="site-nav__link is-active">الكلية</a>
+      <a href="#about" class="site-nav__link">عن الكلية</a>
+      <a href="#paths" class="site-nav__link">المسارات الأكاديمية</a>
+      <a href="#study-system" class="site-nav__link">نظام الدراسة</a>
+      <a href="#academic-life" class="site-nav__link">الحياة الأكاديمية</a>
+      <a href="#contact" class="site-nav__link">تواصل معنا</a>
+    </nav>
+
+    <button class="site-nav__toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="فتح القائمة">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+
+  <!-- Mobile menu -->
+  <div class="mobile-menu" id="mobileMenu">
+    <nav aria-label="التنقل على الجوال">
+      <a href="#hero">الكلية</a>
+      <a href="#about">عن الكلية</a>
+      <a href="#paths">المسارات الأكاديمية</a>
+      <a href="#study-system">نظام الدراسة</a>
+      <a href="#academic-life">الحياة الأكاديمية</a>
+      <a href="#contact">تواصل معنا</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ 1. HERO ============ -->
+  <section id="hero" class="hero" data-section="hero">
+    <div class="hero__grid" aria-hidden="true"></div>
+
+    <div class="container hero__inner">
+      <div class="hero__content">
+        <div class="hero__eyebrow hero__anim" style="--d:1">
+          <img src="assets/logos/Screenshot_20260814_014506_Facebook.png" alt="" class="hero__mini-logo">
+          <span>جامعة العريش</span>
+        </div>
+
+        <p class="hero__faculty hero__anim" style="--d:2">كلية الحاسبات والمعلومات</p>
+
+        <h1 class="hero__headline hero__anim" style="--d:3">
+          نحو مستقبل رقمي يبدأ من هنا
+        </h1>
+
+        <p class="hero__sub hero__anim" style="--d:4">
+          من العريش، نُخرّج أجيالًا تتقن علوم الحاسب ونظم المعلومات وتكنولوجيا المعلومات، بأساس علمي متين وتطبيق عملي حقيقي داخل بيئة أكاديمية حديثة.
+        </p>
+
+        <div class="hero__ctas hero__anim" style="--d:5">
+          <a href="#about" class="btn btn--primary">
+            <span>استكشف الكلية</span>
+            <i data-lucide="arrow-left" style="width:18px;height:18px"></i>
+          </a>
+          <a href="#paths" class="btn btn--ghost">اكتشف المسارات الأكاديمية</a>
+        </div>
+      </div>
+
+      <div class="hero__visual hero__anim" style="--d:6">
+        <div class="hero__frame" id="heroFrame">
+          <img src="assets/faculty/building-optimized.jpg"
+               alt="مبنى كلية الحاسبات والمعلومات بجامعة العريش"
+               class="hero__building" id="heroBuilding" loading="eager">
+          <div class="hero__frame-overlay"></div>
+        </div>
+
+        <div class="hero__badge hero__badge--bottom glass-panel">
+          <strong>3</strong>
+          <small>مسارات أكاديمية</small>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero__scroll-cue hero__anim" style="--d:7" aria-hidden="true"><span></span></div>
+  </section>
+
+  <!-- ============ 2. ABOUT THE FACULTY ============ -->
+  <section id="about" class="section" data-section="about">
+    <div class="container about">
+      <div class="about__text" data-reveal>
+        <span class="eyebrow">عن الكلية</span>
+        <h2 class="section-title">هوية أكاديمية بُنيت على العلم والتقنية</h2>
+        <p class="about__desc">
+          كلية الحاسبات والمعلومات إحدى كليات جامعة العريش، تجمع بين ثلاثة مسارات أكاديمية متخصصة في علوم وتقنية الحاسبات، وتُعنى بإعداد خريجين قادرين على مواكبة التطور الرقمي المتسارع بأساس علمي متين وتطبيق عملي حقيقي.
+        </p>
+      </div>
+
+      <div class="about__stat glass-panel" data-reveal>
+        <span class="about__stat-num" data-count-to="3">0</span>
+        <span class="about__stat-label">مسارات أكاديمية متخصصة</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 3. STUDY SYSTEM (Roadmap) ============ -->
+  <section id="study-system" class="section" data-section="study-system">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">نظام الدراسة</span>
+        <h2 class="section-title">خريطة الطريق الأكاديمية</h2>
+        <p class="section-lede">138 ساعة معتمدة ترسم مسارك من التأسيس إلى الاحتراف المهني.</p>
+      </div>
+
+      <div class="roadmap" id="roadmap">
+        <div class="roadmap__line-bg"></div>
+        <div class="roadmap__line-progress" id="roadmapProgress"></div>
+        <div class="roadmap__arrow" id="roadmapArrow">
+          <i data-lucide="chevron-down"></i>
+        </div>
+        
+        <div class="roadmap__item roadmap__item--foundation" data-roadmap-step="0">
+          <div class="roadmap__icon"><i data-lucide="code"></i></div>
+          <div class="roadmap__content glass-panel">
+            <span class="roadmap__step">01</span>
+            <h3>التأسيس البرمجي</h3>
+            <p>دراسة الأسس البرمجية، الخوارزميات، حل المشكلات، والمفاهيم الرياضية الأساسية.</p>
+          </div>
+        </div>
+        
+        <div class="roadmap__item roadmap__item--specialization" data-roadmap-step="1">
+          <div class="roadmap__icon"><i data-lucide="split"></i></div>
+          <div class="roadmap__content glass-panel">
+            <span class="roadmap__step">02</span>
+            <h3>التخصص الدقيق</h3>
+            <p>التعمق في المسار الأكاديمي المختار وبناء الخبرة الدقيقة المتقدمة.</p>
+          </div>
+        </div>
+        
+        <div class="roadmap__item roadmap__item--project" data-roadmap-step="2">
+          <div class="roadmap__icon"><i data-lucide="graduation-cap"></i></div>
+          <div class="roadmap__content glass-panel">
+            <span class="roadmap__step">03</span>
+            <h3>مشروع التخرج</h3>
+            <p>تحويل المعرفة الأكاديمية إلى نظام تطبيقي متكامل يحل مشكلة حقيقية باستخدام أحدث التقنيات.</p>
+          </div>
+        </div>
+        
+        <div class="roadmap__item roadmap__item--launch" data-roadmap-step="3">
+          <div class="roadmap__icon"><i data-lucide="briefcase"></i></div>
+          <div class="roadmap__content glass-panel">
+            <span class="roadmap__step">04</span>
+            <h3>الانطلاق لسوق العمل</h3>
+            <p>ربط التأهيل الأكاديمي بسوق العمل والفرص المهنية لتصبح جاهزاً كمتخصص في التكنولوجيا.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. ACADEMIC PATHS ============ -->
+  <section id="paths" class="section" data-section="paths">
+    <div class="container">
+      <div class="section-head" data-reveal>
+        <span class="eyebrow">المسارات الأكاديمية</span>
+        <h2 class="section-title">اكتشف المسارات الأكاديمية</h2>
+        <p class="section-lede">ثلاثة مسارات، مجالات متعددة، ومستقبل واحد يبدأ من اختيارك.</p>
+      </div>
+
+      <div class="dept-cards" id="deptCards">
+        <!-- generated by js/departments.js from FCI_CONTENT.departments -->
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ 4. WHY THE FACULTY — built in a later step ============ -->
+  <section id="why" class="section" data-section="why" style="display: none;">
+    <!-- لماذا كلية الحاسبات والمعلومات؟: LATER STEP -->
+  </section>
+
+
+
+  <!-- ============ 6. ACADEMIC LIFE — built in a later step ============ -->
+  <section id="academic-life" class="section" data-section="academic-life" style="display: none;">
+    <!-- الحياة الأكاديمية: editorial gallery: LATER STEP -->
+  </section>
+
+  <!-- ============ 7. QR SECTION ============ -->
+  <section id="qr" class="section section--dark qr-section" data-section="qr">
+    <div class="container qr">
+      <div class="qr__text" data-reveal>
+        <span class="eyebrow">تواصل رقمي</span>
+        <h2 class="section-title">اكتشف مستقبلك الآن</h2>
+        <p class="section-lede">امسح الكود للوصول مباشرة إلى الموقع الرسمي لجامعة العريش.</p>
+        <a href="https://aru.edu.eg/" target="_blank" rel="noopener" class="btn btn--ghost" style="margin-top:1.5rem">
+          <span>aru.edu.eg</span>
+          <i data-lucide="external-link" style="width:16px;height:16px"></i>
+        </a>
+      </div>
+
+      <a href="https://aru.edu.eg/" target="_blank" rel="noopener" class="qr__code-wrap" data-reveal aria-label="رابط الموقع الرسمي لجامعة العريش">
+        <img src="assets/images/qr-aru.jpg" alt="رمز QR للموقع الرسمي لجامعة العريش" class="qr__code">
+      </a>
+    </div>
+  </section>
+
+  <!-- ============ 8. FINAL CTA — built in a later step ============ -->
+  <section id="final-cta" class="section section--dark" data-section="final-cta" style="display: none;">
+    <!-- مستقبلك في عالم التكنولوجيا يبدأ بخطوة: LATER STEP -->
+  </section>
+
+</main>
+
+<!-- ============ FULL-SCREEN DEPARTMENT EXPERIENCE (overlay) ============ -->
+<div class="dept-overlay" id="deptOverlay" aria-hidden="true" role="dialog" aria-modal="true">
+  <!-- Populated dynamically by js/departments.js — structure built in LATER STEP -->
+</div>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer" id="contact">
+  <div class="container site-footer__inner">
+
+    <div class="site-footer__brand">
+      <div class="site-footer__logos">
+        <img src="assets/logos/Screenshot_20260814_014506_Facebook.png" alt="شعار جامعة العريش" class="site-footer__logo">
+        <img src="assets/logos/Screenshot_20260814_010526_Facebook.png" alt="شعار كلية الحاسبات والمعلومات" class="site-footer__logo">
+      </div>
+      <p class="site-footer__desc">كلية الحاسبات والمعلومات، إحدى كليات جامعة العريش، تعنى بإعداد كوادر متخصصة في علوم وتقنية الحاسبات والمعلومات.</p>
+    </div>
+
+    <div class="site-footer__col">
+      <h3>تواصل معنا</h3>
+      <ul>
+        <li><a href="https://aru.edu.eg/" target="_blank" rel="noopener">الموقع الرسمي لجامعة العريش</a></li>
+        <li><a href="https://www.facebook.com/share/1eHNq8VyCc/" target="_blank" rel="noopener">صفحة الكلية على فيسبوك</a></li>
+        <li><a href="https://www.facebook.com/share/19DnTf4kBQ/" target="_blank" rel="noopener">صفحة الجامعة على فيسبوك</a></li>
+      </ul>
+    </div>
+
+    <div class="site-footer__col">
+      <h3>موقع الكلية</h3>
+      <a href="https://maps.app.goo.gl/AqpFGk4cvjDK6G8f8" target="_blank" rel="noopener" class="btn btn--ghost" style="padding: 0.6rem 1.2rem; font-size: var(--fs-xs); margin-top: 0.5rem; justify-content: center; border-radius: var(--radius-sm)">
+        <i data-lucide="map-pin" style="width:16px;height:16px"></i>
+        <span>الخريطة الرسمية (Google Maps)</span>
+      </a>
+    </div>
+
+  </div>
+
+  <div class="site-footer__bottom container">
+    <p>© جامعة العريش – كلية الحاسبات والمعلومات</p>
+    <p class="site-footer__credit">Designed &amp; Developed by FCI Designers</p>
+  </div>
+</footer>
+
+<script src="js/content.js"></script>
+<script src="js/navigation.js"></script>
+<script src="js/animations.js"></script>
+<script src="js/departments.js"></script>
+<script src="js/interactions.js"></script>
+<script src="js/chatbot.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

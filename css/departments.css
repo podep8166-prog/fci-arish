@@ -1,0 +1,303 @@
+/* ===================================================================
+   DEPARTMENT CARDS + FULL-SCREEN DEPARTMENT EXPERIENCE
+   =================================================================== */
+
+/* ---- Cards grid ---- */
+.dept-cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.dept-card {
+  position: relative;
+  cursor: pointer;
+  background: var(--white);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius-lg);
+  padding: var(--space-4);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  overflow: hidden;
+  transition: transform var(--dur-med) var(--ease-glass), box-shadow var(--dur-med) var(--ease-glass), border-color var(--dur-med);
+}
+.dept-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.08;
+  background-color: transparent;
+  transition: opacity var(--dur-med) var(--ease-glass), background-position 1.2s var(--ease-glass);
+}
+.dept-card::after {
+  content: '';
+  position: absolute;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: var(--dept-color, var(--blue-500));
+  opacity: 0.10;
+  filter: blur(10px);
+  top: -90px;
+  inset-inline-end: -90px;
+  transition: transform var(--dur-med) var(--ease-glass), opacity var(--dur-med);
+}
+.dept-card:hover,
+.dept-card:focus-visible {
+  transform: translateY(-8px);
+  box-shadow: 0 26px 50px -18px rgba(11,31,58,0.28);
+  border-color: var(--dept-color, var(--blue-500));
+}
+.dept-card:hover::before,
+.dept-card:focus-visible::before { opacity: 0.20; }
+.dept-card:hover::after,
+.dept-card:focus-visible::after { transform: scale(1.15); opacity: 0.16; }
+
+/* distinct personality per department */
+.dept-card--cs { border-radius: 28px 28px 28px 4px; }
+.dept-card--is { border-radius: 4px 28px 28px 28px; }
+.dept-card--it { border-radius: 28px 4px 28px 28px; }
+
+/* Subtle visual patterns & Interactions */
+/* CS: Algorithm Paths (Grid of interconnected paths) */
+.dept-card--cs::before {
+  background-image: 
+    linear-gradient(160deg, var(--dept-color) 0%, transparent 55%),
+    linear-gradient(90deg, var(--dept-color) 1px, transparent 1px),
+    linear-gradient(0deg, var(--dept-color) 1px, transparent 1px);
+  background-size: 100% 100%, 30px 30px, 30px 30px;
+  background-position: 0 0, 0 0, 0 0;
+}
+.dept-card--cs:hover::before {
+  background-position: 0 0, 15px 15px, 15px 15px;
+}
+
+/* IS: Structured Information Flow (Moving data pipelines) */
+.dept-card--is::before {
+  background-image: 
+    linear-gradient(160deg, var(--dept-color) 0%, transparent 55%),
+    repeating-linear-gradient(0deg, transparent 0, transparent 20px, var(--dept-color) 20px, var(--dept-color) 22px),
+    repeating-linear-gradient(90deg, transparent 0, transparent 40px, var(--dept-color) 40px, var(--dept-color) 44px);
+  background-size: 100% 100%, 100% 100%, 100% 100%;
+  background-position: 0 0, 0 0, 0 0;
+}
+.dept-card--is:hover::before {
+  background-position: 0 0, 0 0, 40px 0;
+}
+
+/* IT: Network Topology (Pulsing connection nodes) */
+.dept-card--it::before {
+  background-image: 
+    linear-gradient(160deg, var(--dept-color) 0%, transparent 55%),
+    radial-gradient(circle at center, var(--dept-color) 2px, transparent 2.5px),
+    radial-gradient(circle at center, transparent 3px, var(--dept-color) 4px, transparent 4.5px);
+  background-size: 100% 100%, 24px 24px, 48px 48px;
+  background-position: 0 0, 0 0, 12px 12px;
+}
+.dept-card--it:hover::before {
+  background-position: 0 0, 12px 12px, 0 0;
+}
+
+.dept-card--cs .dept-card__icon { border-radius: 14px; }
+.dept-card--is .dept-card__icon { border-radius: 50%; }
+.dept-card--it .dept-card__icon { border-radius: 4px 14px 4px 14px; }
+
+.dept-card__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  z-index: 1;
+}
+.dept-card__number {
+  font-family: var(--font-latin);
+  font-size: var(--fs-sm);
+  font-weight: 700;
+  color: var(--gray-400);
+}
+.dept-card__icon {
+  width: 52px;
+  height: 52px;
+  border-radius: var(--radius-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--dept-color, var(--blue-500)) 12%, white);
+  color: var(--dept-color, var(--blue-600));
+  transition: transform var(--dur-med) var(--ease-glass);
+}
+.dept-card:hover .dept-card__icon { transform: scale(1.08) rotate(-4deg); }
+
+.dept-card__name-ar {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--navy-900);
+  margin-top: var(--space-2);
+}
+.dept-card__name-en {
+  position: relative;
+  z-index: 1;
+  font-family: var(--font-latin);
+  direction: ltr;
+  text-align: right;
+  font-size: var(--fs-xs);
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--ink-400);
+  text-transform: uppercase;
+}
+.dept-card__desc {
+  position: relative;
+  z-index: 1;
+  font-size: var(--fs-sm);
+  line-height: 1.8;
+  color: var(--ink-600);
+  margin-top: 0.25rem;
+}
+.dept-card__cta {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  padding-top: var(--space-3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 700;
+  font-size: var(--fs-sm);
+  color: var(--dept-color, var(--blue-600));
+}
+.dept-card__cta i { transition: transform var(--dur-fast) var(--ease-glass); }
+.dept-card:hover .dept-card__cta i,
+.dept-card:focus-visible .dept-card__cta i { transform: translateX(-5px); }
+
+/* ---- Full-screen department experience ---- */
+body.dept-is-open {
+  overflow: hidden; /* Lock background scroll */
+}
+
+.dept-overlay {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 1500;
+  background: var(--navy-950);
+  color: var(--white);
+  overflow-y: auto;
+  overflow-x: hidden;
+  scrollbar-width: none; /* Firefox */
+  display: none;
+}
+.dept-overlay::-webkit-scrollbar {
+  display: none; /* Safari/Chrome */
+}
+.dept-overlay.is-open {
+  display: block;
+  animation: fadeIn var(--dur-slow) ease forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.dept-exp__bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background: radial-gradient(1200px 800px at 80% 0%, color-mix(in srgb, var(--dept-color, var(--blue-500)) 22%, var(--navy-950)) 0%, var(--navy-950) 60%);
+}
+.dept-exp__canvas { position: fixed; inset: 0; z-index: 0; opacity: 0.25; }
+
+.dept-exp__back {
+  position: sticky;
+  top: var(--space-3);
+  z-index: 5;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: var(--space-3) var(--space-3) 0;
+  padding: 0.6rem 1.1rem;
+  border-radius: var(--radius-pill);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.18);
+  backdrop-filter: blur(12px);
+  color: var(--white);
+  font-weight: 700;
+  font-size: var(--fs-sm);
+}
+.dept-exp__back:hover { background: rgba(255,255,255,0.16); }
+
+.dept-exp__hero {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding: var(--space-6) var(--space-3) var(--space-5);
+}
+.dept-exp__eyebrow {
+  font-family: var(--font-latin);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: var(--fs-xs);
+  font-weight: 700;
+  color: var(--dept-color, var(--blue-300));
+}
+.dept-exp__title {
+  font-size: var(--fs-3xl);
+  font-weight: 800;
+  margin-top: var(--space-2);
+}
+.dept-exp__title-en {
+  font-family: var(--font-latin);
+  direction: ltr;
+  color: rgba(255,255,255,0.55);
+  font-size: var(--fs-md);
+  margin-top: 0.4rem;
+}
+.dept-exp__summary {
+  margin-top: var(--space-3);
+  max-width: 62ch;
+  font-size: var(--fs-md);
+  line-height: 1.9;
+  color: rgba(255,255,255,0.78);
+}
+
+.dept-exp__body {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-w);
+  margin-inline: auto;
+  padding: 0 var(--space-3) var(--space-7);
+  display: grid;
+  gap: var(--space-5);
+}
+.dept-exp__block h3 {
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  margin-bottom: var(--space-3);
+}
+.dept-exp__list {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-2);
+}
+.dept-exp__list li {
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-sm);
+  padding: var(--space-2) var(--space-3);
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.85);
+}
+.dept-exp__placeholder {
+  font-size: var(--fs-sm);
+  color: rgba(255,255,255,0.45);
+  font-style: normal;
+  border: 1px dashed rgba(255,255,255,0.2);
+  border-radius: var(--radius-sm);
+  padding: var(--space-3);
+}

@@ -1,0 +1,33 @@
+/* ===================================================================
+   ANIMATION UTILITIES
+   Shared reveal/parallax/count-up classes used by every section.
+   Section-specific keyframes are added alongside each section's build step.
+   =================================================================== */
+
+[data-reveal] {
+  opacity: 0;
+  transform: translateY(36px) scale(0.97);
+  filter: blur(8px);
+  transition:
+    opacity 0.9s var(--ease-glass),
+    transform 0.9s var(--ease-glass),
+    filter 0.9s var(--ease-glass);
+}
+[data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  filter: blur(0);
+}
+
+/* stagger direct children of a revealed group when it carries [data-reveal-group] */
+[data-reveal-group] > * {
+  transition-delay: calc(var(--i, 0) * 90ms);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-reveal] {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}

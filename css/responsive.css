@@ -1,0 +1,108 @@
+/* ===================================================================
+   RESPONSIVE OVERRIDES
+   Mobile-first adjustments layered on top of style.css / departments.css.
+   =================================================================== */
+
+/* Ensure everything behaves responsively and no horizontal scroll */
+html, body {
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
+section, .container {
+  width: 100%;
+  max-width: 100%;
+}
+
+@media (max-width: 960px) {
+  .site-nav__links { display: none; }
+  .site-nav__toggle { display: flex; }
+  
+  /* Shrink root spacing variables to fit more content */
+  :root {
+    --space-1: 0.2rem;
+    --space-2: 0.4rem;
+    --space-3: 0.8rem;
+    --space-4: 1.2rem;
+    --space-5: 1.8rem;
+    --space-6: 2.5rem;
+    --space-7: 3.5rem;
+  }
+
+  /* Shrink hero fonts and elements slightly to fit the 2-column layout */
+  .hero__headline { font-size: clamp(1.4rem, 4vw, 2.2rem); }
+  .hero__sub { font-size: 0.9rem; }
+  .hero__ctas { gap: 0.5rem; flex-wrap: wrap; }
+  .hero__ctas .btn { padding: 0.6rem 1rem; font-size: 0.85rem; }
+  .hero__visual { max-width: 100%; }
+  
+  /* Shrink department cards to fit 3 columns */
+  .dept-cards { gap: 0.5rem; }
+  .dept-card { padding: 1rem 0.5rem; border-width: 1px; }
+  .dept-card__icon { width: 40px; height: 40px; font-size: 1.2rem; }
+  .dept-card__title { font-size: 1rem; }
+  .dept-card__desc { font-size: 0.75rem; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+  .dept-card__cta { font-size: 0.75rem; }
+  
+  /* Shrink About section */
+  .about__content { padding-inline-end: 1rem; }
+  .about__headline { font-size: 1.5rem; }
+  .about__text { font-size: 0.85rem; }
+  .about__stats { gap: 0.5rem; }
+  .about__stat { padding: 1rem 0.5rem; }
+  .about__stat-num { font-size: 1.5rem; }
+  .about__stat-label { font-size: 0.8rem; }
+  
+  /* Shrink QR section */
+  .qr { padding: 1.5rem; gap: 1rem; }
+  .qr__title { font-size: 1.2rem; }
+  .qr__desc { font-size: 0.85rem; }
+  
+  /* Shrink Footer */
+  .site-footer__inner { gap: 1rem; }
+  .site-footer__brand p { font-size: 0.8rem; }
+  
+  /* Shrink Department Expanded View */
+  .dept-exp__hero { padding-top: 2rem; }
+  .dept-exp__title { font-size: 1.8rem; }
+  .dept-exp__summary { font-size: 0.9rem; }
+  .dept-exp__body { gap: 1.5rem; }
+  .dept-exp__list li { padding: 0.5rem; font-size: 0.75rem; }
+}
+
+@media (max-width: 600px) {
+  /* Extremely tight spacing for very small mobile screens, but KEEP the grids */
+  :root {
+    --space-4: 0.8rem;
+    --space-5: 1.2rem;
+    --space-6: 1.8rem;
+    --space-7: 2.5rem;
+    --fs-sm: 0.75rem;
+    --fs-xs: 0.65rem;
+  }
+  
+  .hero__badge { display: none; }
+  .hero__frame { border-radius: var(--radius-md); padding: 0.5rem; }
+  
+  /* Further scale down dept cards for 3 columns on 390px */
+  .dept-card { padding: 0.6rem 0.4rem; }
+  .dept-card__icon { width: 32px; height: 32px; font-size: 1rem; margin-bottom: 0.5rem; }
+  .dept-card__title { font-size: 0.85rem; margin-bottom: 0.3rem; }
+  .dept-card__desc { font-size: 0.65rem; margin-bottom: 0.5rem; }
+  
+  /* Chatbot panel fit */
+  .chatbot__panel {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    max-height: 100vh;
+    border-radius: 0;
+    bottom: 0;
+  }
+}
