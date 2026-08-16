@@ -18,8 +18,8 @@
           <span class="dept-card__icon"><i data-lucide="${d.icon}"></i></span>
         </div>
         <h3 class="dept-card__name-ar">${d.name_ar}</h3>
-        <span class="dept-card__name-en">${d.name_en}</span>
-        <p class="dept-card__desc">${d.summary_ar}</p>
+        
+        
         <span class="dept-card__cta">
           <span>استكشف المسار</span>
           <i data-lucide="arrow-left" style="width:16px;height:16px"></i>
@@ -248,15 +248,18 @@
     resizeHandler = null;
   }
 
+  let savedScrollY = 0;
+
   function openDepartment(id, pushState) {
     const d = DEPTS.find((x) => x.id === id);
     if (!d) return;
     
+    savedScrollY = window.scrollY; // Save page scroll
     document.body.classList.add('dept-is-open');
     renderOverlay(d);
     overlay.classList.add('is-open');
     overlay.setAttribute('aria-hidden', 'false');
-    overlay.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: 'instant' });
     
     if (pushState) history.pushState({ dept: id }, '', `#path-${id}`);
   }
@@ -266,6 +269,7 @@
     overlay.classList.remove('is-open');
     overlay.setAttribute('aria-hidden', 'true');
     stopCanvas();
+    window.scrollTo({ top: savedScrollY, behavior: 'instant' }); // Restore page scroll
     
     if (pushState) history.pushState({}, '', '#paths');
   }

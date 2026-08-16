@@ -18,12 +18,12 @@ if os.path.exists('.env'):
 
 from ai_service import get_faculty_response
 
-async def main():
+def main():
     print("Testing OpenRouter connection...")
-    response = await get_faculty_response("ما هي أقسام كلية الحاسبات والمعلومات؟")
+    response = get_faculty_response("ما هي أقسام كلية الحاسبات والمعلومات؟")
     print("RESPONSE:")
     print(response.encode('utf-8').decode('utf-8', 'ignore'))
     print("Raw Output:", repr(response))
 
 if __name__ == "__main__":
-    asyncio.run(main())
+    main()

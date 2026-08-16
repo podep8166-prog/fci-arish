@@ -6,7 +6,7 @@
 .dept-cards {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: var(--space-4);
+  gap: var(--space-5);
 }
 
 .dept-card {
@@ -175,24 +175,20 @@
 
 /* ---- Full-screen department experience ---- */
 body.dept-is-open {
-  overflow: hidden; /* Lock background scroll */
+  background: var(--navy-950);
+}
+body.dept-is-open > :not(#deptOverlay):not(#chatbotHost) {
+  display: none !important;
 }
 
 .dept-overlay {
-  position: fixed;
-  inset: 0;
+  position: relative;
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   z-index: 1500;
   background: var(--navy-950);
   color: var(--white);
-  overflow-y: auto;
-  overflow-x: hidden;
-  scrollbar-width: none; /* Firefox */
   display: none;
-}
-.dept-overlay::-webkit-scrollbar {
-  display: none; /* Safari/Chrome */
 }
 .dept-overlay.is-open {
   display: block;

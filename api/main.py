@@ -66,6 +66,7 @@ def chat_endpoint():
         return jsonify({"error": "رسالة غير صالحة"}), 400
         
     user_message = data['message']
+    history = data.get('history', [])
     
     if not isinstance(user_message, str) or len(user_message.strip()) == 0:
         return jsonify({"error": "الرسالة لا يمكن أن تكون فارغة"}), 400
@@ -73,7 +74,7 @@ def chat_endpoint():
     if len(user_message) > settings.MAX_MESSAGE_LENGTH:
         return jsonify({"error": f"الرسالة طويلة جداً. الحد الأقصى هو {settings.MAX_MESSAGE_LENGTH} حرف."}), 400
 
-    reply = get_faculty_response(user_message)
+    reply = get_faculty_response(user_message, history)
     return jsonify({"response": reply})
 
 if __name__ == '__main__':

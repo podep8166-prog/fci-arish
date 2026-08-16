@@ -9,7 +9,7 @@ from faq_service import get_faq_answer
 
 logger = logging.getLogger(__name__)
 
-def get_faculty_response(user_message: str) -> str:
+def get_faculty_response(user_message: str, history: list = None) -> str:
     """
     Checks FAQ first, then sends message to OpenRouter.
     Uses ModelManager for rotation and fallback.
@@ -40,14 +40,21 @@ def get_faculty_response(user_message: str) -> str:
             "X-Title": "FCI Arish Assistant"
         }
         
+        messages = [{"role": "system", "content": SYSTEM_PROMPT}]
+        
+        # Defensively inject history (last 4 messages max to save tokens)
+        if history and isinstance(history, list):
+            for msg in history[-4:]:
+                if isinstance(msg, dict) and msg.get('role') in ['user', 'assistant'] and msg.get('content'):
+                    messages.append({"role": msg['role'], "content": str(msg['content'])})
+                    
+        messages.append({"role": "user", "content": user_message})
+
         payload = {
             "model": current_model,
-            "messages": [
-                {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_message}
-            ],
-            "temperature": 0.2,
-            "max_tokens": settings.MAX_OUTPUT_TOKENS
+            "messages": messages,
+            "temperature": 0.15,
+            "max_tokens": 250
         }
         
         data = json.dumps(payload).encode('utf-8')

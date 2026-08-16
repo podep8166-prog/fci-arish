@@ -20,7 +20,7 @@
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/departments.css">
 <link rel="stylesheet" href="css/animations.css">
-<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/responsive.css?v=3">
 </head>
 <body>
 
@@ -81,11 +81,6 @@
 
     <div class="container hero__inner">
       <div class="hero__content">
-        <div class="hero__eyebrow hero__anim" style="--d:1">
-          <img src="assets/logos/Screenshot_20260814_014506_Facebook.png" alt="" class="hero__mini-logo">
-          <span>جامعة العريش</span>
-        </div>
-
         <p class="hero__faculty hero__anim" style="--d:2">كلية الحاسبات والمعلومات</p>
 
         <h1 class="hero__headline hero__anim" style="--d:3">
@@ -161,7 +156,7 @@
           <div class="roadmap__icon"><i data-lucide="code"></i></div>
           <div class="roadmap__content glass-panel">
             <span class="roadmap__step">01</span>
-            <h3>التأسيس البرمجي</h3>
+            <h3>التأسيس البرمجي <span style="font-size: 0.6em; font-weight: normal; opacity: 0.75; margin-right: 8px;">(السنة الأولى والثانية)</span></h3>
             <p>دراسة الأسس البرمجية، الخوارزميات، حل المشكلات، والمفاهيم الرياضية الأساسية.</p>
           </div>
         </div>
@@ -170,7 +165,7 @@
           <div class="roadmap__icon"><i data-lucide="split"></i></div>
           <div class="roadmap__content glass-panel">
             <span class="roadmap__step">02</span>
-            <h3>التخصص الدقيق</h3>
+            <h3>التخصص الأكاديمي <span style="font-size: 0.6em; font-weight: normal; opacity: 0.75; margin-right: 8px;">(السنة الثالثة)</span></h3>
             <p>التعمق في المسار الأكاديمي المختار وبناء الخبرة الدقيقة المتقدمة.</p>
           </div>
         </div>
@@ -179,7 +174,7 @@
           <div class="roadmap__icon"><i data-lucide="graduation-cap"></i></div>
           <div class="roadmap__content glass-panel">
             <span class="roadmap__step">03</span>
-            <h3>مشروع التخرج</h3>
+            <h3>مشروع التخرج <span style="font-size: 0.6em; font-weight: normal; opacity: 0.75; margin-right: 8px;">(السنة الرابعة)</span></h3>
             <p>تحويل المعرفة الأكاديمية إلى نظام تطبيقي متكامل يحل مشكلة حقيقية باستخدام أحدث التقنيات.</p>
           </div>
         </div>
@@ -202,7 +197,6 @@
       <div class="section-head" data-reveal>
         <span class="eyebrow">المسارات الأكاديمية</span>
         <h2 class="section-title">اكتشف المسارات الأكاديمية</h2>
-        <p class="section-lede">ثلاثة مسارات، مجالات متعددة، ومستقبل واحد يبدأ من اختيارك.</p>
       </div>
 
       <div class="dept-cards" id="deptCards">
@@ -223,24 +217,7 @@
     <!-- الحياة الأكاديمية: editorial gallery: LATER STEP -->
   </section>
 
-  <!-- ============ 7. QR SECTION ============ -->
-  <section id="qr" class="section section--dark qr-section" data-section="qr">
-    <div class="container qr">
-      <div class="qr__text" data-reveal>
-        <span class="eyebrow">تواصل رقمي</span>
-        <h2 class="section-title">اكتشف مستقبلك الآن</h2>
-        <p class="section-lede">امسح الكود للوصول مباشرة إلى الموقع الرسمي لجامعة العريش.</p>
-        <a href="https://aru.edu.eg/" target="_blank" rel="noopener" class="btn btn--ghost" style="margin-top:1.5rem">
-          <span>aru.edu.eg</span>
-          <i data-lucide="external-link" style="width:16px;height:16px"></i>
-        </a>
-      </div>
-
-      <a href="https://aru.edu.eg/" target="_blank" rel="noopener" class="qr__code-wrap" data-reveal aria-label="رابط الموقع الرسمي لجامعة العريش">
-        <img src="assets/images/qr-aru.jpg" alt="رمز QR للموقع الرسمي لجامعة العريش" class="qr__code">
-      </a>
-    </div>
-  </section>
+  
 
   <!-- ============ 8. FINAL CTA — built in a later step ============ -->
   <section id="final-cta" class="section section--dark" data-section="final-cta" style="display: none;">
@@ -300,3 +277,4 @@
 <script src="js/app.js"></script>
 </body>
 </html>
+

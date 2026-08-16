@@ -2,7 +2,7 @@
    SERVICE WORKER — caches the static app shell only.
    Bump CACHE_NAME whenever shell assets change to force a refresh.
    =================================================================== */
-const CACHE_NAME = 'fci-arish-shell-v1';
+const CACHE_NAME = 'fci-arish-shell-v16';
 const SHELL_ASSETS = [
   './',
   './index.html',
@@ -16,6 +16,7 @@ const SHELL_ASSETS = [
   './js/departments.js',
   './js/interactions.js',
   './js/content.js',
+  './js/chatbot.js',
   './manifest.json'
 ];
 
@@ -40,7 +41,7 @@ self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request).then((cached) => {
       if (cached) return cached;
-      return fetch(event.request).catch(() => cached);
+      return fetch(event.request);
     })
   );
 });

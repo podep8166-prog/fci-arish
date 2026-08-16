@@ -37,11 +37,7 @@ const CHAT_HTML = `
 </div>
 `;
 
-// Configuration for API
-const CONFIG = {
-  // Use local backend for development testing
-  API_BASE_URL: "http://127.0.0.1:8000"
-};
+
 
 document.addEventListener("DOMContentLoaded", () => {
   document.body.insertAdjacentHTML('beforeend', CHAT_HTML);
@@ -56,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const quickBox = document.getElementById("chatbotQuick");
 
   let isOpen = false;
+  let conversationHistory = [];
 
   toggleBtn.addEventListener("click", () => {
     isOpen = !isOpen;
@@ -95,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const msg = document.createElement("div");
     msg.className = 'chatbot__msg chatbot__msg--bot chatbot__msg--loading';
     msg.id = "chatbotLoading";
-    msg.innerHTML = "<span></span><span></span><span></span>";
+    msg.innerHTML = "<span style='font-size: 0.85rem; color: var(--navy-500); margin-inline-end: 8px;'>جاري التفكير...</span><span></span><span></span><span></span>";
     body.appendChild(msg);
     body.scrollTop = body.scrollHeight;
   }
@@ -105,14 +102,14 @@ document.addEventListener("DOMContentLoaded", () => {
     if (el) el.remove();
   }
 
-  async function fetchAnswer(question) {
+  async function fetchAnswer(question, history) {
     try {
-      const response = await fetch(`${CONFIG.API_BASE_URL}/api/chat`, {
+      const response = await fetch(`/api/chat`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json"
         },
-        body: JSON.stringify({ message: question })
+        body: JSON.stringify({ message: question, history: history })
       });
       if (!response.ok) {
         if (response.status === 429) {
@@ -143,9 +140,16 @@ document.addEventListener("DOMContentLoaded", () => {
     if (submitBtn) submitBtn.disabled = true;
 
     try {
-      const reply = await fetchAnswer(text);
+      const reply = await fetchAnswer(text, conversationHistory);
       removeLoading();
       addMessage(reply, false);
+      
+      // Update history defensively
+      conversationHistory.push({ role: 'user', content: text });
+      conversationHistory.push({ role: 'assistant', content: reply });
+      if (conversationHistory.length > 6) {
+        conversationHistory = conversationHistory.slice(-6);
+      }
     } catch (e) {
       removeLoading();
       if (e.message === "429") {
