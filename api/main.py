@@ -15,8 +15,8 @@ logger = logging.getLogger("fci_backend")
 
 app = Flask(__name__)
 
-# Apply strict CORS
-CORS(app, resources={r"/api/*": {"origins": settings.get_allowed_origins_list()}}, methods=["GET", "POST", "OPTIONS"])
+# Apply strict CORS - Allow all origins for Vercel serverless to avoid CORS blocking
+CORS(app, resources={r"/*": {"origins": "*"}}, methods=["GET", "POST", "OPTIONS"])
 
 # Apply rate limiting
 limiter = Limiter(
@@ -60,7 +60,13 @@ def health_check():
     return jsonify({"status": "healthy", "version": "1.0", "ai_ready": bool(settings.OPENROUTER_API_KEY)})
 
 @app.route('/api/chat', methods=['POST'])
-def chat_endpoint():
+@app.route('/chat', methods=['POST'])
+@app.route('/api/main.py', methods=['POST'])
+@app.route('/', defaults={'path': ''}, methods=['POST', 'GET'])
+@app.route('/<path:path>', methods=['POST', 'GET'])
+def chat_endpoint(path=''):
+    if request.method == 'GET':
+        return jsonify({"status": "healthy", "version": "1.0", "ai_ready": bool(settings.OPENROUTER_API_KEY)})
     data = request.get_json(silent=True)
     if not data or 'message' not in data:
         return jsonify({"error": "رسالة غير صالحة"}), 400
