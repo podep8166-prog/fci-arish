@@ -16,7 +16,7 @@ if os.path.exists('.env'):
                 k, v = line.strip().split('=', 1)
                 os.environ[k] = v
 
-from ai_service import get_faculty_response
+from api.ai_service import get_faculty_response
 
 def main():
     print("Testing OpenRouter connection...")

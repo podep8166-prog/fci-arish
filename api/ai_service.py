@@ -2,10 +2,10 @@ import logging
 import json
 import urllib.request
 import urllib.error
-from prompts import SYSTEM_PROMPT
-from config import settings
-from model_manager import model_manager
-from faq_service import get_faq_answer
+from api.prompts import SYSTEM_PROMPT
+from api.config import settings
+from api.model_manager import model_manager
+from api.faq_service import get_faq_answer
 
 logger = logging.getLogger(__name__)
 

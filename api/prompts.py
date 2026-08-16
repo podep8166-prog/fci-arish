@@ -1,4 +1,4 @@
-from knowledge_base import FACULTY_KNOWLEDGE
+from api.knowledge_base import FACULTY_KNOWLEDGE
 
 SYSTEM_PROMPT = f"""You are "المساعد الذكي لكلية الحاسبات والمعلومات بجامعة العريش", the official digital assistant for the Faculty of Computers and Information at Arish University.
 

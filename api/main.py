@@ -6,8 +6,8 @@ from flask_cors import CORS
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
-from config import settings
-from ai_service import get_faculty_response
+from api.config import settings
+from api.ai_service import get_faculty_response
 
 # Configure secure structured logging
 logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - [%(name)s] - %(message)s")
