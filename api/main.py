@@ -74,8 +74,10 @@ def chat_endpoint(path=''):
         return jsonify({"status": "healthy", "version": "1.0", "ai_ready": bool(settings.OPENROUTER_API_KEY)})
         
     import os
-    if not os.environ.get('OPENROUTER_API_KEY'):
-        return jsonify({"error": "API Key is missing in environment"}), 500
+    api_key = os.environ.get('OPENROUTER_API_KEY')
+    if not api_key:
+        available_keys = list(os.environ.keys())
+        return jsonify({"error": f"API Key missing! Available Vercel keys are: {available_keys}"}), 500
 
     try:
         data = request.get_json(silent=True)

@@ -2,8 +2,8 @@ import os
 from typing import List
 from dotenv import load_dotenv
 
-# Explicitly load .env file
-load_dotenv()
+# Explicitly load .env file without overriding system env vars
+load_dotenv(override=False)
 
 class Settings:
     OPENROUTER_API_KEY: str = os.getenv("OPENROUTER_API_KEY", "")
