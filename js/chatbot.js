@@ -112,10 +112,21 @@ document.addEventListener("DOMContentLoaded", () => {
         body: JSON.stringify({ message: question, history: history })
       });
       if (!response.ok) {
+        let errorMsg = `HTTP error! status: ${response.status}`;
+        try {
+          const errorData = await response.json();
+          if (errorData.error) {
+            errorMsg = errorData.error;
+          }
+        } catch (parseError) {
+           console.error("Could not parse error JSON:", parseError);
+        }
+        console.error("Backend Error Details:", errorMsg);
+        
         if (response.status === 429) {
           throw new Error("429");
         }
-        throw new Error(`HTTP error! status: ${response.status}`);
+        throw new Error(errorMsg);
       }
       const data = await response.json();
       return data.response;
@@ -152,12 +163,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     } catch (e) {
       removeLoading();
+      console.error("Chatbot Fetch Exception:", e);
       if (e.message === "429") {
         addMessage("عذراً، تم تجاوز الحد المسموح من الأسئلة. الرجاء الانتظار قليلاً.", false, true);
       } else if (e.message.includes("Failed to fetch") || e.name === "TypeError") {
-        addMessage("عذراً، الخادم المحلي لا يعمل حالياً. تأكد من تشغيل الخادم.", false, true);
+        addMessage("عذراً، حدث خطأ في الاتصال بالخادم. تأكد من اتصالك بالإنترنت.", false, true);
       } else {
-        addMessage("عذراً، حدث خطأ في الاتصال بالخادم. الرجاء المحاولة لاحقاً.", false, true);
+        addMessage(`خطأ تقني: ${e.message}`, false, true);
       }
     } finally {
       input.disabled = false;

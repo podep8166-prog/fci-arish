@@ -59,6 +59,11 @@ def apply_security_headers_and_log(response):
 def health_check():
     return jsonify({"status": "healthy", "version": "1.0", "ai_ready": bool(settings.OPENROUTER_API_KEY)})
 
+@app.route('/api/ping', methods=['GET'])
+@app.route('/ping', methods=['GET'])
+def ping():
+    return jsonify({"status": "Backend is alive and running on Vercel!"}), 200
+
 @app.route('/api/chat', methods=['POST'])
 @app.route('/chat', methods=['POST'])
 @app.route('/api/main.py', methods=['POST'])
@@ -67,21 +72,30 @@ def health_check():
 def chat_endpoint(path=''):
     if request.method == 'GET':
         return jsonify({"status": "healthy", "version": "1.0", "ai_ready": bool(settings.OPENROUTER_API_KEY)})
-    data = request.get_json(silent=True)
-    if not data or 'message' not in data:
-        return jsonify({"error": "رسالة غير صالحة"}), 400
         
-    user_message = data['message']
-    history = data.get('history', [])
-    
-    if not isinstance(user_message, str) or len(user_message.strip()) == 0:
-        return jsonify({"error": "الرسالة لا يمكن أن تكون فارغة"}), 400
-        
-    if len(user_message) > settings.MAX_MESSAGE_LENGTH:
-        return jsonify({"error": f"الرسالة طويلة جداً. الحد الأقصى هو {settings.MAX_MESSAGE_LENGTH} حرف."}), 400
+    import os
+    if not os.environ.get('OPENROUTER_API_KEY'):
+        return jsonify({"error": "API Key is missing in environment"}), 500
 
-    reply = get_faculty_response(user_message, history)
-    return jsonify({"response": reply})
+    try:
+        data = request.get_json(silent=True)
+        if not data or 'message' not in data:
+            return jsonify({"error": "رسالة غير صالحة"}), 400
+            
+        user_message = data['message']
+        history = data.get('history', [])
+        
+        if not isinstance(user_message, str) or len(user_message.strip()) == 0:
+            return jsonify({"error": "الرسالة لا يمكن أن تكون فارغة"}), 400
+            
+        if len(user_message) > settings.MAX_MESSAGE_LENGTH:
+            return jsonify({"error": f"الرسالة طويلة جداً. الحد الأقصى هو {settings.MAX_MESSAGE_LENGTH} حرف."}), 400
+
+        reply = get_faculty_response(user_message, history)
+        return jsonify({"response": reply})
+    except Exception as e:
+        logger.error(f"Chat endpoint error: {str(e)}")
+        return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=8000, debug=False)
